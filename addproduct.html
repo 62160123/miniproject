@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>ADD_PRODUCT</title>
+</head>
+<body style="background-color:darkgray;"><center>
+    <div class="navbar navbar-inverse">
+        <a href="product.html" class="navbar-brand" style="text-align: center;">ONLINE STORE <span class="glyphicon glyphicon-shopping-cart"></span></a>
+        <ul class="nav navbar-nav">
+            <li ><a>ADD PRODUCT</a></li>
+        </ul>
+    </div>
+    <div class="grid-container" id="disp"></div>
+
+    <form action="addproduct.php" method="POST" enctype="multipart/form-data">
+        <b> <div>เพิ่มสินค้า (กรุณาใส่ข้อมูลให้ครบทุกช่อง)</div>
+        ชื่อสินค้า (Product Name) : <input type="text" name="pdname"><br>
+
+        ยี่ห้อสินค้า (Brand) : <input type="text" name="brand" ><br>
+
+        รายละเอียดสินค้า (Detail) : <br> <Textarea rows="6" cols="60" name="detail" ></Textarea><br>
+
+        รูปสินค้า (Product Image) : <input type="file" name="images">
+
+        ราคาสินค้า (Price) : <input type="text" name="price" ><br>
+        </b>
+        <button type="submit" name="submit">ตกลง</button>
+    </form>
+</center>
+</body>
+</html>

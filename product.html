@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>PRODUCT</title>
+</head>
+
+<body style="background-color:darkgray;">
+<div class="navbar-inverse">
+    <a class="navbar-brand">ONLINE STORE <span class="glyphicon glyphicon-shopping-cart"></span></a>
+    <ul class="nav navbar-nav">
+        <li ><a href="addproduct.html">ADD PRODUCT</a></li>
+    </ul>
+    
+    <div class="navbar-collapse">
+        <div class="navbar-form navbar-right" role="search">
+          <div class="form-group input-group">
+              <input type="text" id="kw" class="form-control" placeholder="Search..">
+              <span class="input-group-btn">
+                  <button onclick="search()" class="btn btn-default">
+                      <span class="glyphicon glyphicon-search"></span>
+                  </button>
+              </span>        
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid-container" id="disp"></div>
+</body>
+
+<script>
+search();
+    function search(){
+        kw = document.getElementById('kw').value;
+        console.log("kw=" +kw);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                //document.getElementById('disp').innerHTML = this.responseText;
+                arr = JSON.parse(this.responseText);
+                console.log(arr);
+                if(arr.length == 0){
+                    document.getElementById('disp').innerHTML = "Not found";
+                } else {
+                    html ="";
+                    for (i = 0; i < arr.length; i++) {
+                        html += "<div class='panel panel-primary'><div class='panel-heading'><b>"+ arr[i].pdname +"</b></div><br><b>ยี่ห้อ : </b>"+arr[i].brand+"<br>"
+                                +"<b>รายละเอียด : </b>"+ arr[i].detail +"<br><img src='images/"+ arr[i].images +"'>"+"<div class='panel-footer'><b>ราคา : </b>"
+                                +arr[i].price+"</div></div>";
+                    }
+                    document.getElementById('disp').innerHTML = html;
+                }
+            }
+        }
+        parameters = "kw=" + kw;
+        xmlhttp.open("post", "product.php");
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send(parameters);
+    }
+</script>
+</html>
